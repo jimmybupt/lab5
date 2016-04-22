@@ -5,7 +5,7 @@ class Rule:
 		support = 0.0
 		confidence = 0.0
 
-def accuracy(True_Label, Predict_Lable):
+def accuracy(True_Label, Predict_Label):
 	count=0
 	for i in range(0,len(True_Label)):
 		if(Predict_Label(i)==True_Label(i)):
@@ -54,3 +54,4 @@ for i in range(0,5):
 
 	print Predict_Label
 	print True_Label
+print accuracy(True_Label, Pridict_Label)
