@@ -24,6 +24,13 @@ for i in range(0,1):
 			F1.write(str(Train_Data[j][k]) + ' ')
 		F1.write(Train_Label[j] + '\n')
 
+	#generate appearance.txt
+	F2 = open('appearance.txt', 'w')
+	F2.write('antecedent\n')
+	Label_Set = set(Train_Label)
+	for label in Label_Set:
+		F2.write( label + ' consequent\n')
+
 	#train
 
 	#evaluate
