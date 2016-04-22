@@ -8,7 +8,7 @@ class Rule:
 def accuracy(True_Label, Predict_Label):
 	count=0
 	for i in range(0,len(True_Label)):
-		if(Predict_Label(i)==True_Label(i)):
+		if(Predict_Label[i]==True_Label[i]):
 			count+=1
 	accuracy=1.0*count/len(True_Label)
 	return accuracy
@@ -24,7 +24,7 @@ for i in range(0,5):
 		R.support = float(L[-2].strip('() ,\n'))
 		R.keywords = L[2:-2]
 		Rules.append(R)
-		print R.keywords
+		#print R.keywords
 	
 	F2 = open('test'+str(i), 'r')
 	Predict_Label = []
@@ -52,6 +52,6 @@ for i in range(0,5):
 	for line in F3:
 		True_Label.append(line.strip(' \n'))
 
-	print Predict_Label
-	print True_Label
-print accuracy(True_Label, Pridict_Label)
+	#print Predict_Label
+	#print True_Label
+print accuracy(True_Label, Predict_Label)

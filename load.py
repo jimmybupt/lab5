@@ -37,7 +37,7 @@ def load():
 	sys.stdout.flush()
 	i = 0
 	for line in vector_file:
-		print 'read doc #' + str(i)
+		#print 'read doc #' + str(i)
 		block = i / block_size
 		if block >= cross_fold:
 			block = cross_fold - 1
