@@ -9,7 +9,7 @@ def accuracy(True_Label, Predict_Lable):
 	count=0
 	for i in range(0,len(True_Label)):
 		if(Predict_Label(i)==True_Label(i)):
-			count++
+			count+=1
 	accuracy=1.0*count/len(True_Label)
 	return accuracy
 
