@@ -54,4 +54,4 @@ for i in range(0,5):
 
 	#print Predict_Label
 	#print True_Label
-print accuracy(True_Label, Predict_Label)
+	print accuracy(True_Label, Predict_Label)
