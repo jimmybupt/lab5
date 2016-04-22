@@ -5,6 +5,8 @@ class Rule:
 		support = 0.0
 		confidence = 0.0
 
+def accuracy(True_Label, Predict_Lable)
+
 for i in range(0,5):
 	Rules = []
 	F1 = open('rule'+str(i), 'r')
@@ -24,7 +26,7 @@ for i in range(0,5):
 		L = line.split(' ')
 		K = set(L)
 		max_conf = 0.0
-		max_label = 'default'
+		max_label = 'earn'
 		for rule in Rules:
 			match = True
 			for word in rule.keywords:
