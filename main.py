@@ -1,14 +1,30 @@
-print 'CSE 5243 Similarity Analysis by Kun Liu & Zhe Dong'
+print 'CSE 5243 Associate Rule Analysis by Kun Liu & Zhe Dong'
 
 #load data
 import load
 (Data,Label,cdim) = load.load()
 
-#split data 
+for i in range(0,1):
+	
+	#split data
+	Train_Data = []
+	Train_Label = []
+	for j in range(0,5):
+		if j!=i:
+			Train_Data += Data[j]
+			Train_Label += Label[j]
+	Test_Data = Data[i]
+	Test_Label = Label[i]
 
-#convert data into apriori format
+	#convert data into apriori format
+	F1 = open('train.txt', 'w')
+	for j in range(0, len(Train_Data)):
+		#print 'doc #' + str(j) + ' with ' + str(len(Train_Data[j])) + 'keywords'
+		for k in range(0, len(Train_Data[j])):
+			F1.write(str(Train_Data[j][k]) + ' ')
+		F1.write(Train_Label[j] + '\n')
 
-#train
+	#train
 
-#evaluate
+	#evaluate
 

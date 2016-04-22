@@ -13,7 +13,7 @@ def load():
 	DIC = []
 	vocabulary = open("vocabulary.txt", 'r')
 	for word in vocabulary:
-		DIC.append(str(word))
+		DIC.append(str(word).rstrip())
 
 	cross_fold = 5 #number of blocks for cross validation
 	block_size = rdim / cross_fold
@@ -24,7 +24,9 @@ def load():
 		size = block_size
 		if i == cross_fold - 1:
 			size = rdim - ((cross_fold-1)*block_size)
-		M = [[]] * size
+		M = []
+		for j in range(0, size):
+			M.append([])
 		V = [None] * size
 		S.append(M)
 		L.append(V)
@@ -35,6 +37,7 @@ def load():
 	sys.stdout.flush()
 	i = 0
 	for line in vector_file:
+		print 'read doc #' + str(i)
 		block = i / block_size
 		if block >= cross_fold:
 			block = cross_fold - 1
@@ -42,7 +45,9 @@ def load():
 
 		data = ast.literal_eval(line)
 		for D in data:
+			#print 'find word ' + DIC[int(D[0])]
 			S[block][offset].append(DIC[int(D[0])])
+		#print str(len(S[block][offset])) + ' ' + str(block) + ' ' + str(offset)
 		i=i+1
 		if i==rdim:
 			break
