@@ -1,3 +1,5 @@
+import time
+
 class Rule:
 	def __init__(self):
 		label = ""
@@ -13,7 +15,13 @@ def accuracy(True_Label, Predict_Label):
 	accuracy=1.0*count/len(True_Label)
 	return accuracy
 
-for i in range(0,5):
+cross_fold = 5 #number of blocks for cross validation
+total_time=0
+accuracy_list=[]
+count=0
+for i in range(0,cross_fold):
+  	print ("") 
+  	print ("cross validation trial: "+str(i+1)+" out of "+str(cross_fold))
 	Rules = []
 	F1 = open('rule'+str(i), 'r')
 	for line in F1:
@@ -27,8 +35,10 @@ for i in range(0,5):
 		#print R.keywords
 	
 	F2 = open('test'+str(i), 'r')
+	start_time=time.time()
 	Predict_Label = []
 	for line in F2:
+		count+=1
 		L = line.split(' ')
 		K = set(L)
 		max_conf = 0.0
@@ -46,7 +56,8 @@ for i in range(0,5):
 					max_conf = rule.confidence
 					max_label = rule.label
 		Predict_Label.append(max_label)
-
+	single_time=time.time()-start_time
+	total_time+=single_time
 	F3 = open('test_label'+str(i), 'r')
 	True_Label = []
 	for line in F3:
@@ -54,4 +65,8 @@ for i in range(0,5):
 
 	#print Predict_Label
 	#print True_Label
-	print accuracy(True_Label, Predict_Label)
+	acc=accuracy(True_Label, Predict_Label) 
+	accuracy_list.append(acc) 
+	print ("  accuracy is: " +  str(acc))
+print ("average online cost for classification is: " +str(total_time/count))
+print ("average accuracy for classification is: " +str(sum(accuracy_list)/cross_fold))
